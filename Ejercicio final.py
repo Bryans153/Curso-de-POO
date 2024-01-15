@@ -1,9 +1,10 @@
 import openai
 
 openai.api_key = "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"
-system_init = '''Hace de cuenta que sos un analizador de setnimientos.
+system_rol = '''Hace de cuenta que sos un analizador de setnimientos.
                 yo te paso sentimeintos y vos anilizas el sentimiento de los mensajes y me das una respuesta al menos de 1 caracter y como maximo 4 caracteres
                 SOLO RESPUESTAS NUMERICAS, donde -1 es negactividad maxima, 0 esneutral y 1 es positiva maxima.
+                puedes ir entre esos rangos, es decir 0.3, 0.5 etc tambien son validos.
                 (pUedes responder solo con ints o floats)'''
                 
 mensajes = [{"role": "system", "content": system_rol}]
@@ -17,14 +18,14 @@ class Sentimeinto:
     
     
 class AnalizadorDeSentimeintos:
-   def __init__(self, rangos):
+    def __init__(self, rangos):
        self.rangos = rangos
        
        
     def analizar_sentimiento(self, polaridad):
-    for rango, sentimiento in self.rangos:
-        if rango [0] < polaridad <= rango[1]:
-            return sentimiento
+        for rango, sentimiento in self.rangos:
+            if rango [0] < polaridad <= rango[1]:
+                return sentimiento
         return Sentimeinto("Muy negativo","31")
     
 rangos = [
